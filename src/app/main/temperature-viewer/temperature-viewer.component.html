@@ -1,0 +1,13 @@
+<button (click)="resetTemperatures()">Reset temperatures</button>
+@if (this.temperatureSubscription?.closed){
+  <button (click)="startSubscription()">Subscribe</button>
+}
+@else {
+<button (click)="endSubscription()">Unsubscribe</button>
+}
+<button (click)="setStatic()">Set to static data</button>
+@for (temperature of historicalTemperatures(); track temperature.room){
+  <div style="width: 500px; background-color: aquamarine; display: flex; flex-direction: column; margin: 5px;">
+    <app-temperature-node [temperatures]="temperature.temperatures" [roomName]="temperature.room"></app-temperature-node>
+  </div>
+}
